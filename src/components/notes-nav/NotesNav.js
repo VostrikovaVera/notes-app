@@ -21,9 +21,7 @@ const NotesNav = ({ notes, searchValue, setSearchValue }) => {
                 />
             </div>
             <ul className="notes-list">
-                {Object.entries(notes).filter((noteItem) => {
-                    const [noteData] = noteItem;
-
+                {Object.entries(notes).filter(([noteId, noteData]) => {
                     return searchValue !== '' ?
                         noteData.title.toLowerCase().includes(searchValue.toLowerCase()) :
                         true;
