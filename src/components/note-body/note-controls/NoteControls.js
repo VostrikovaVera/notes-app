@@ -1,9 +1,10 @@
 import React from 'react';
-import { changeNote } from '../../../actions/notes.actions';
+import { saveNote } from '../../../actions/notes.actions';
 import {connect} from 'react-redux';
+import Loader from '../../loader/Loader';
 import './NoteControls.scss';
 
-const NoteControls = ({ notes, activeNoteId }) => {
+const NoteControls = ({ notes, activeNoteId, saveNote }) => {
 
     if(!notes) {
         return null;
@@ -11,7 +12,8 @@ const NoteControls = ({ notes, activeNoteId }) => {
 
     return (
         <div className="Note-controls">
-            <button>Save</button>
+            <button onClick={() => {saveNote(notes[activeNoteId].content, activeNoteId)}}>Save</button>
+            <Loader />
         </div>
     );
 };
@@ -24,11 +26,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    //changeNote
+    saveNote
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteControls);
-
-
-
-//<button onClick={() => {changeNote(notes.activeNoteId.content, activeNoteId)}}>Save</button>

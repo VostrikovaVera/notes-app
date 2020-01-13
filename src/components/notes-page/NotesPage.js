@@ -3,12 +3,12 @@ import './NotesPage.scss';
 import NotesNav from '../notes-nav/NotesNav';
 import NoteBody from '../note-body/NoteBody';
 
-const NotesPage = ({ notes }) => {
+const NotesPage = () => {
 
     return (
         <div className="Notes-container">
-            <NotesNav notes={notes} />
-            <NoteBody notes={notes} />
+            <NotesNav />
+            <NoteBody />
         </div>
     );
 };

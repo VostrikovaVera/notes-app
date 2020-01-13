@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
-import { GET_NOTES, SET_ACTIVE, HANDLE_NOTE_CONTENT_CHANGE } from "../constants/action-types";
+import { GET_NOTES, SET_ACTIVE, HANDLE_NOTE_CONTENT_CHANGE, SET_SEARCH_VALUE } from "../constants/action-types";
 
 const initialState = {
     activeNoteId: null,
-    notes: null
+    notes: null,
+    searchValue: '',
+    isLoaderActive: false
 };
 
 function notesReducer(state = initialState, action) {
@@ -22,14 +24,25 @@ function notesReducer(state = initialState, action) {
             };
 
         case HANDLE_NOTE_CONTENT_CHANGE:
+            const {id, content, isLoaderActive} = action.payload;
             return {
                 ...state,
-                notes: Object.entries(state.notes).map(([noteId, noteData]) => {
-                    return {
-                        [noteData.content]: noteId === action.payload.id ? action.payload.content : noteData.content
+                notes: {
+                    ...state.notes,
+                    isLoaderActive: isLoaderActive,
+                    [id] : {
+                        ...state.notes[id],
+                        content: content
                     }
-                })
+                }
             };
+        
+        case SET_SEARCH_VALUE:
+            return {
+                ...state,
+                searchValue: action.payload
+            };
+    
 
         default:
             return state;
