@@ -1,4 +1,6 @@
 import React from "react";
+import {connect} from 'react-redux';
+import { logIn } from '../../actions/notes.actions';
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import './Login.scss';
@@ -8,10 +10,10 @@ const LoginSchema = Yup.object().shape({
         .required("First name required"),
     userEmail: Yup.string()
         .email("Invalid email")
-        .required("Required"),
+        .required("Required")
 });
 
-const Login = () => {
+const Login = (logIn) => {
     return (
         <div className="Login-form">
             <Formik
@@ -20,7 +22,9 @@ const Login = () => {
                     userEmail: ''
                 }}
                 validationSchema={LoginSchema}
-                onSubmit={values => {console.log(values)}}
+                onSubmit={values => {
+                    logIn(values.firstName, values.userEmail);
+                }}
             >
                 {({ errors, touched }) => (
                     <Form>
@@ -42,4 +46,8 @@ const Login = () => {
     );
 };
 
-export default Login;
+const mapDispatchToProps = {
+    logIn
+};
+
+export default connect(mapDispatchToProps)(Login);

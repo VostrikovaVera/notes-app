@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_NOTES, SET_ACTIVE, HANDLE_NOTE_CONTENT_CHANGE, SET_SEARCH_VALUE } from "../constants/action-types";
+import { GET_NOTES, SET_ACTIVE, HANDLE_NOTE_CONTENT_CHANGE, SET_SEARCH_VALUE, LOADER_STATUS_CHANGE, LOG_IN } from "../constants/action-types";
 import {url as apiUrl} from '../constants/Api';
 
 export const getNotes = () => {
@@ -29,26 +29,6 @@ export const setActiveNote = (id) => {
     };
 };
 
-/*export const handleNoteContentChange = (noteContent, id) => {
-    return async (dispatch) => {
-        try {
-            await {
-                isLoaderActive: true
-            };
-            dispatch({
-                type: HANDLE_NOTE_CONTENT_CHANGE,
-                payload: {
-                    content: noteContent,
-                    id: id,
-                    isLoaderActive: false
-                }
-            })
-        } catch (err) {
-            console.log(err);
-        }
-    };
-};*/
-
 export const handleNoteContentChange = (noteContent, id) => {
     return (dispatch) => {
         dispatch({
@@ -66,8 +46,20 @@ export const saveNote = (noteContent, id) => {
 
     return async (dispatch) => {
         try {
+            dispatch({
+                type: LOADER_STATUS_CHANGE,
+                payload: {
+                    isLoaderActive: true
+                }
+            });
             await axios.patch(`${apiUrl}/notes/${id}/.json`, {
                 content: noteContent
+            });
+            dispatch({
+                type: LOADER_STATUS_CHANGE,
+                payload: {
+                    isLoaderActive: false
+                }
             });
             dispatch({
                 type: HANDLE_NOTE_CONTENT_CHANGE,
@@ -88,5 +80,27 @@ export const setSearchValue = (searchValue) => {
             type: SET_SEARCH_VALUE,
             payload: searchValue
         })
+    };
+};
+
+export const logIn = (name, email) => {
+    return async (dispatch) => {
+        try {
+            await axios.post(`${apiUrl}`, {
+                loginData: {
+                    name: name,
+                    email: email
+                }
+            });
+            dispatch({
+                type: LOG_IN,
+                payload: {
+                    name: name,
+                    email: email
+                }
+            })
+        } catch (err) {
+            console.log(err);
+        }
     };
 };

@@ -20,34 +20,22 @@ const App = ({getNotes, notes}) => {
         <Router>
             <Container>
                 <header>
-                    <div className="logo">
-                        <Link to="/"><b>Logo</b></Link>
-                    </div>
-                    <ul className="navigation">
+                    <ul>
+                        <li>
+                            <Link to="/">Notes</Link>
+                        </li>
                         <li>
                             <Link to="/login">Login</Link>
-                        </li>
-                        <li>
-                            <Link to="/register">Register</Link>
-                        </li>
-                        <li>
-                            <Link to="/notes">Notes</Link>
                         </li>
                     </ul>
                 </header>
 
                 <Switch>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route path="/register">
-                        <div>This is register page</div>
-                    </Route>
-                    <Route path="/notes">
+                    <Route path="/">
                         <NotesPage notes={notes}/>
                     </Route>
-                    <Route path="/">
-                        <div>Home page will be here soon</div>
+                    <Route path="/login">
+                        <Login />
                     </Route>
                 </Switch>
             </Container>
