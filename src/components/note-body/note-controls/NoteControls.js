@@ -12,7 +12,7 @@ const NoteControls = ({ notes, activeNoteId, saveNote }) => {
 
     return (
         <div className="Note-controls">
-            <button onClick={() => {saveNote(notes[activeNoteId].content, activeNoteId)}}>Save</button>
+            <button onClick={() => {saveNote(notes[activeNoteId], activeNoteId)}}>Save</button>
             <Loader />
         </div>
     );

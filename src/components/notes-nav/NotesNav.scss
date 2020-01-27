@@ -56,3 +56,21 @@
     }
   }
 }
+
+.Note-item-enter {
+  opacity: 0;
+}
+
+.Note-item-enter.Note-item-enter-active {
+  opacity: 1;
+  transition: opacity 5000ms ease-in;
+}
+
+.Note-item-leave {
+  opacity: 1;
+}
+
+.Note-item-leave.Note-item-leave-active {
+  opacity: 0;
+  transition: opacity 3000ms ease-in;
+}

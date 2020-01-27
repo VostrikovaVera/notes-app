@@ -1,6 +1,7 @@
 import React from "react";
 import { setSearchValue } from '../../actions/notes.actions';
 import {connect} from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './NotesNav.scss';
 import NoteItem from '../note-item/NoteItem';
 
@@ -33,20 +34,25 @@ const NotesNav = ({ notes, searchValue, categories, setSearchValue }) => {
                             {categoryData}
                         </p>
                         <ul className="notes-list accordion-body">
-                            {Object.entries(notes).filter(([noteId, noteData]) => {
-                                const title = noteData.title.toLowerCase();
-                                const searchVal = searchValue.toLowerCase();
-                                const category = noteData.category;
-                                return searchValue !== ''
-                                    ? title.includes(searchVal) && category === categoryId
-                                    : category === categoryId;
-                            }).map(([noteId, noteData]) => {
-                                return <NoteItem
-                                    key={noteId}
-                                    noteId={noteId}
-                                    noteData={noteData}
-                                />;
-                            })}
+                            <ReactCSSTransitionGroup
+                                transitionName="Note-item"
+                                transitionEnterTimeout={5000}
+                                transitionLeaveTimeout={3000}>
+                                    {Object.entries(notes).filter(([noteId, noteData]) => {
+                                        const title = noteData.title.toLowerCase();
+                                        const searchVal = searchValue.toLowerCase();
+                                        const category = noteData.category;
+                                        return searchValue !== ''
+                                            ? title.includes(searchVal) && category === categoryId
+                                            : category === categoryId;
+                                    }).map(([noteId, noteData]) => {
+                                        return <NoteItem
+                                            key={noteId}
+                                            noteId={noteId}
+                                            noteData={noteData}
+                                        />;
+                                    })}
+                            </ReactCSSTransitionGroup>
                         </ul>
                     </li>;
                 })}

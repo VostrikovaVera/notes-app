@@ -11,7 +11,7 @@
         "1": "tag11",
         "2": "tag111"
       },
-      "category": "1",
+      "category": "Category one",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     },
@@ -23,7 +23,7 @@
         "1": "tag22",
         "2": "tag222"
       },
-      "category": "2",
+      "category": "Category two",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     },
@@ -35,7 +35,7 @@
         "1": "tag11",
         "2": "tag111"
       },
-      "category": "2",
+      "category": "Category two",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     },
@@ -47,7 +47,7 @@
         "1": "tag11",
         "2": "tag111"
       },
-      "category": "1",
+      "category": "Category one",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     },
@@ -59,13 +59,13 @@
         "1": "tag11",
         "2": "tag111"
       },
-      "category": "2",
+      "category": "Category two",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     }
   },
   "categories": {
-    "1": "some category",
-    "2": "another category"
+    "Category one": "some category",
+    "Category two": "another category"
   }
 }

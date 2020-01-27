@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { GET_NOTES, SET_ACTIVE, HANDLE_NOTE_CONTENT_CHANGE, SET_SEARCH_VALUE, LOADER_STATUS_CHANGE, LOG_IN } from "../constants/action-types";
+import { GET_NOTES, SET_ACTIVE, HANDLE_NOTE_CHANGE, SAVE_NOTE, SET_SEARCH_VALUE, LOADER_STATUS_CHANGE, LOG_IN } from "../constants/action-types";
 
 const initialState = {
     activeNoteId: null,
@@ -25,19 +25,38 @@ function notesReducer(state = initialState, action) {
                 activeNoteId: action.payload
             };
 
-        case HANDLE_NOTE_CONTENT_CHANGE:
-            const {id, content, isLoaderActive} = action.payload;
+        case HANDLE_NOTE_CHANGE:
+            const {param, value, id} = action.payload;
+            console.log(action.payload);
+            console.log(param);
+            console.log(value);
+
             return {
                 ...state,
-                isLoaderActive: isLoaderActive,
                 notes: {
                     ...state.notes,
                     [id] : {
                         ...state.notes[id],
+                        [param]: value
+                    }
+                }
+            };
+
+        case SAVE_NOTE: {
+            const {id, content, category} = action.payload;
+            return {
+                ...state,
+                notes: {
+                    ...state.notes,
+                    [id] : {
+                        ...state.notes[id],
+                        category: category,
                         content: content
                     }
                 }
             };
+        }
+
         
         case SET_SEARCH_VALUE:
             return {

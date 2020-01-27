@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_NOTES, SET_ACTIVE, HANDLE_NOTE_CONTENT_CHANGE, SET_SEARCH_VALUE, LOADER_STATUS_CHANGE, LOG_IN } from "../constants/action-types";
+import { GET_NOTES, SET_ACTIVE, HANDLE_NOTE_CHANGE, SAVE_NOTE, SET_SEARCH_VALUE, LOADER_STATUS_CHANGE, LOG_IN } from "../constants/action-types";
 import {url as apiUrl} from '../constants/Api';
 
 export const getNotes = () => {
@@ -29,21 +29,20 @@ export const setActiveNote = (id) => {
     };
 };
 
-export const handleNoteContentChange = (noteContent, id) => {
+export const handleNoteChange = (param, value, id) => {
     return (dispatch) => {
         dispatch({
-            type: HANDLE_NOTE_CONTENT_CHANGE,
+            type: HANDLE_NOTE_CHANGE,
             payload: {
-                content: noteContent,
+                param: param,
+                value: value,
                 id: id
             }
         })
     };
 };
 
-export const saveNote = (noteContent, id) => {
-    console.log(`${apiUrl}/notes/${id}/content`);
-
+export const saveNote = (note, id) => {
     return async (dispatch) => {
         try {
             dispatch({
@@ -53,7 +52,9 @@ export const saveNote = (noteContent, id) => {
                 }
             });
             await axios.patch(`${apiUrl}/notes/${id}/.json`, {
-                content: noteContent
+                content: note.content,
+                category: note.category
+                
             });
             dispatch({
                 type: LOADER_STATUS_CHANGE,
@@ -62,9 +63,10 @@ export const saveNote = (noteContent, id) => {
                 }
             });
             dispatch({
-                type: HANDLE_NOTE_CONTENT_CHANGE,
+                type: SAVE_NOTE,
                 payload: {
-                    content: noteContent,
+                    content: note.content,
+                    category: note.category,
                     id: id
                 }
             })
