@@ -1,21 +1,43 @@
 import React from "react";
 import { setSearchValue } from '../../actions/notes.actions';
 import {connect} from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './NotesNav.scss';
-import NoteItem from '../note-item/NoteItem';
+import Accordion from '../accordion/Accordion';
 
 const NotesNav = ({ notes, searchValue, categories, setSearchValue }) => {
 
     if (!notes) {
         return null;
     }
-    
-    const accordionToggle = (e) => {
-        const accordionBtn = e.target;
 
-        accordionBtn.classList.toggle('open');
-    };
+    let filteredNotes = Object.entries(notes).filter(([noteId, noteData]) => {
+        const title = noteData.title.toLowerCase();
+        const searchVal = searchValue.toLowerCase();
+
+        return searchValue !== '' ?
+            title.includes(searchVal) :
+            true;
+    });
+
+    let notesByCategories = {};
+    filteredNotes.forEach(([noteId, noteData]) => {
+        const categoryId = noteData.category;
+
+        if (!notesByCategories[categoryId]) {
+            const currentCategory = {
+                name: categories[categoryId],
+                notes: []
+            };
+            notesByCategories[categoryId] = currentCategory;
+        }
+
+        const currentNote = {
+            id: noteId,
+            title: noteData.title
+        };
+
+        notesByCategories[categoryId].notes.push(currentNote);
+    });
 
     return (
         <div className="Notes-nav">
@@ -27,36 +49,7 @@ const NotesNav = ({ notes, searchValue, categories, setSearchValue }) => {
                     onChange={(e) => {setSearchValue(e.target.value)}}
                 />
             </div>
-            <ul>
-                {Object.entries(categories).map(([categoryId, categoryData]) => {
-                    return <li key={categoryId}>
-                        <p className="accordion-btn" onClick={(e) => {accordionToggle(e)}}>
-                            {categoryData}
-                        </p>
-                        <ul className="notes-list accordion-body">
-                            <ReactCSSTransitionGroup
-                                transitionName="Note-item"
-                                transitionEnterTimeout={5000}
-                                transitionLeaveTimeout={3000}>
-                                    {Object.entries(notes).filter(([noteId, noteData]) => {
-                                        const title = noteData.title.toLowerCase();
-                                        const searchVal = searchValue.toLowerCase();
-                                        const category = noteData.category;
-                                        return searchValue !== ''
-                                            ? title.includes(searchVal) && category === categoryId
-                                            : category === categoryId;
-                                    }).map(([noteId, noteData]) => {
-                                        return <NoteItem
-                                            key={noteId}
-                                            noteId={noteId}
-                                            noteData={noteData}
-                                        />;
-                                    })}
-                            </ReactCSSTransitionGroup>
-                        </ul>
-                    </li>;
-                })}
-            </ul>
+            <Accordion list={notesByCategories} />
         </div>
     );
 };
@@ -74,14 +67,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesNav);
-
-
-
-/*
-{Object.entries(notes).map(([noteId, noteData]) => {
-    return <NoteItem
-        key={noteId}
-        noteId={noteId}
-        noteData={noteData}
-    />;
-})}*/

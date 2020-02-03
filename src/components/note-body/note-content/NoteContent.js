@@ -18,7 +18,7 @@ const NoteContent = ({ categories, notes, activeNoteId, handleNoteChange }) => {
 
         handleNoteChange('category', categoryId, activeNoteId);
     };
-    
+
     return (
         <div className="Note-content">
             <input

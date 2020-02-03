@@ -3,9 +3,7 @@ import { setActiveNote } from '../../actions/notes.actions';
 import {connect} from 'react-redux';
 import './NoteItem.scss';
 
-const NoteItem = ({ setActiveNote, noteId, noteData, activeNoteId }) => {
-    const { title } = noteData;
-
+const NoteItem = ({ setActiveNote, noteId, title, activeNoteId }) => {
     return (
         <li className={`Note-item ${noteId === activeNoteId ? 'active' : ''}`}
             onClick={() => { setActiveNote(noteId) }}

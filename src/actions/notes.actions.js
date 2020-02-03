@@ -47,9 +47,7 @@ export const saveNote = (note, id) => {
         try {
             dispatch({
                 type: LOADER_STATUS_CHANGE,
-                payload: {
-                    isLoaderActive: true
-                }
+                payload: true
             });
             await axios.patch(`${apiUrl}/notes/${id}/.json`, {
                 content: note.content,
@@ -58,9 +56,7 @@ export const saveNote = (note, id) => {
             });
             dispatch({
                 type: LOADER_STATUS_CHANGE,
-                payload: {
-                    isLoaderActive: false
-                }
+                payload: false
             });
             dispatch({
                 type: SAVE_NOTE,

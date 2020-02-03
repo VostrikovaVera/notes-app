@@ -1,71 +1,71 @@
 {
   "activeNote": {
-     "id": "first"
+     "id": "note_gh456y46r"
   },
   "notes": {
-    "first": {
-      "title": "Note title",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "note_gh456y46r": {
+      "title": "Work note 1",
+      "content": "Some long long long text from work note 1",
       "tags": {
         "0": "tag1",
         "1": "tag11",
         "2": "tag111"
       },
-      "category": "Category one",
+      "category": "cat_bhr39t49t87y3",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     },
-    "second": {
-      "title": "Second note",
-      "content": "Lorem ipsum dolor sit amet",
+    "note_fg4i5y6uh": {
+      "title": "Personal note",
+      "content": "Personal note 1 content",
       "tags": {
         "0": "tag2",
         "1": "tag22",
         "2": "tag222"
       },
-      "category": "Category two",
+      "category": "cat_vg3847gh3uh48",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     },
-    "third": {
-      "title": "Note third",
-      "content": "Lorem ipsum",
+    "note_h657u4o56": {
+      "title": "Personal note second",
+      "content": "Text for 2nd personal note",
       "tags": {
         "0": "tag1",
         "1": "tag11",
         "2": "tag111"
       },
-      "category": "Category two",
+      "category": "cat_vg3847gh3uh48",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     },
-    "fourth": {
-      "title": "Note 4",
-      "content": "Lorem ipsum dolor sit amet, consectetur",
+    "note_h5467kh64": {
+      "title": "Work note 2",
+      "content": "Work ideas and plans 2",
       "tags": {
         "0": "tag1",
         "1": "tag11",
         "2": "tag111"
       },
-      "category": "Category one",
+      "category": "cat_bhr39t49t87y3",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     },
-    "fifth": {
-      "title": "5th",
-      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "note_gh54g43e5": {
+      "title": "Personal 3rd",
+      "content": "Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text. Personal note 3 text.",
       "tags": {
         "0": "tag1",
         "1": "tag11",
         "2": "tag111"
       },
-      "category": "Category two",
+      "category": "cat_vg3847gh3uh48",
       "created": "1996-10-15T00:05:32.000Z",
       "updated": "2018-04-23T10:26:00.996Z"
     }
   },
   "categories": {
-    "Category one": "some category",
-    "Category two": "another category"
+    "cat_bhr39t49t87y3": "Work",
+    "cat_vg3847gh3uh48": "Personal"
   }
 }
